@@ -5,58 +5,33 @@ function getHumanChoice() {
 
 
 function getComputerChoice() {
-    let computer = Math.ceil(Math.random() * 3)
+    let rps = ["rock", "paper", "scissors"]
+    let computer = Math.floor(Math.random() * 3)
 
-    switch (computer) {
-    case 1:
-        computer = "rock"
-        break
-    case 2:
-        computer = "paper"
-        break
-    case 3:
-        computer = "scissors"
-        break 
+    return rps[computer]
 }
-    return computer
-}
-
 
 let computerScore = 0
 let humanScore = 0
 let counter = 0
-while (counter != 5) { 
+while (counter != 5) {
     let humanChoice = getHumanChoice()
     let computerChoice = getComputerChoice()
-     if (humanChoice == "rock" && computerChoice == "paper") {
-        console.log("Computer beats human this round!")
-        computerScore++
-        counter++
-    } else if (humanChoice == "paper" && computerChoice == "scissors") {
-        console.log("Computer beats human this round!")
-        computerScore++   
-        counter++                                    
-    } else if (humanChoice == "scissors" && computerChoice == "rock") {
-        console.log("Computer beats human this round!")
-        computerScore++
-        counter++                                         // computer winning ends
-    } else if (computerChoice == "rock" && humanChoice == "paper") {      
-        console.log("Human beats computer this round!")
-        humanScore++
-        counter++
-    } else if (computerChoice == "paper" && humanChoice == "scissors") {
-        console.log("Human beats computer this round!")
-        humanScore++
-        counter++
-    } else if (computerChoice == "scissors" && humanChoice == "rock") {
-        console.log("Human beats computer this round!")
-        humanScore++
-        counter++
-    } else {
-        console.log("Tie!")
-        counter++
-}
-}
 
-console.log(computerScore)
-console.log(humanScore)
+    if (humanChoice == computerChoice) {
+        console.log("This round was a tie")
+    }       // for when human wins
+    else if ((humanChoice == "rock" && computerChoice == "scissors") ||
+            (humanChoice == "paper" && computerChoice == "rock") ||
+            (humanChoice == "scissors" && computerChoice == "paper")
+    ) {
+        console.log("Human wins this round!")
+        humanScore++
+        counter++
+    }
+    else {
+        console.log("Computer wins this round!")
+        computerScore++
+        counter++
+    }
+}
